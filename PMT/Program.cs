@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Text.RegularExpressions;
 
 class Program
 {
@@ -6,9 +7,26 @@ class Program
     {
         string inputString = Console.ReadLine();
 
-        string result = ProcessString(input: inputString);
+        if (Regex.IsMatch(input: inputString, "^[a-z]*$"))
+        {
+            string result = ProcessString(input: inputString);
 
-        Console.WriteLine(result);
+            Console.WriteLine(result);
+        }
+        else
+        {
+            throw new InvalidStringException("Были введены не подходящие символы: " + GetInvalidCharacters(input: inputString));
+        }
+    }
+
+    class InvalidStringException : Exception 
+    {
+        public InvalidStringException(string characters): base(characters) { }
+    }
+
+    static string GetInvalidCharacters(string input)
+    {
+        return new string(input.Where(c => !Regex.IsMatch(c.ToString(), "^[a-z]*$")).Distinct().ToArray());
     }
 
     static string ProcessString(string input)
