@@ -12,10 +12,20 @@ class Program
             string result = ProcessString(input: inputString);
 
             Console.WriteLine(result);
+            CountCharacters(input: result);
         }
         else
         {
             throw new InvalidStringException("Были введены не подходящие символы: " + GetInvalidCharacters(input: inputString));
+        }
+    }
+
+    static void CountCharacters(string input)
+    {
+        foreach (var baseCharacter in input.Distinct().ToArray())
+        {
+            var count = input.Count(character => character == baseCharacter);
+            Console.WriteLine("Количество символов {0} в обработанной строке = {1}", baseCharacter, count);
         }
     }
 
