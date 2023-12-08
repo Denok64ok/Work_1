@@ -12,12 +12,47 @@ class Program
             string result = ProcessString(input: inputString);
 
             Console.WriteLine(result);
+
             CountCharacters(input: result);
+
+            string substring = FindLongestSubstring(result);
+            if (substring != "")
+            {
+                Console.WriteLine("Самая длинная подстрока начинающаяся и заканчивающаяся на гласную: " + substring);
+            }
         }
         else
         {
             throw new InvalidStringException("Были введены не подходящие символы: " + GetInvalidCharacters(input: inputString));
         }
+    }
+
+    static string FindLongestSubstring(string input)
+    {
+        string vowels = "aeiouy";
+        string longestSubstring = "";
+        int maxLength = longestSubstring.Length;
+
+        for (int i = 0; i < input.Length; i++)
+        {
+            if (vowels.Contains(input[i]))
+            {
+                for (int j = i + 1; j < input.Length; j++)
+                {
+                    if (vowels.Contains(input[j]))
+                    {
+                        string substring = input.Substring(i, j - i + 1);
+                        if (substring.Length > maxLength)
+                        {
+                            maxLength = substring.Length;
+                            longestSubstring = substring;
+                        }
+                    }
+                }
+            }
+        }
+
+        return longestSubstring;
     }
 
     static void CountCharacters(string input)
