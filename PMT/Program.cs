@@ -46,11 +46,39 @@ class Program
                 sortAlgorithm.Sort(sortResult);
                 Console.WriteLine(new string(sortResult));
             }
+
+            int randomPosition = int.Parse(GetRandomNumber(result.Length).Result);
+            Console.WriteLine(result.Remove(randomPosition, 1));
         }
         else
         {
             throw new InvalidStringException("Были введены не подходящие символы: " + GetInvalidCharacters(input: inputString));
         }
+    }
+
+    static async Task<string> GetRandomNumber(int lenMax)
+    {
+        lenMax -= 1;
+        try
+        {
+            using (HttpClient client = new())
+            {
+                string apiUrl = "https://www.random.org/integers/?num=1&min=0&max=" + lenMax.ToString() + "&col=1&base=10&format=plain&rnd=new";
+                HttpResponseMessage response = await client.GetAsync(apiUrl);
+
+                if (response.IsSuccessStatusCode)
+                {
+                    return await response.Content.ReadAsStringAsync();
+                }
+            }
+        }
+        catch (Exception ex)
+        {
+            Console.WriteLine($"Ошибка при обращении к удаленному API: {ex.Message}");
+        }
+
+        Random random = new();
+        return random.Next(0, lenMax).ToString();
     }
 
     static string FindLongestSubstring(string input)
