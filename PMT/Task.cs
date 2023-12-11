@@ -1,14 +1,15 @@
 ﻿using System;
+using System.Security.Cryptography.X509Certificates;
 using System.Text.RegularExpressions;
 
-class Program
+public class Task
 {
     static void Main()
     {
         string inputString = Console.ReadLine();
 
         if (Regex.IsMatch(input: inputString, "^[a-z]*$"))
-        { 
+        {
 
             string result = ProcessString(input: inputString);
 
@@ -32,14 +33,14 @@ class Program
                 Console.WriteLine("Неверный ввод. Пожалуйста, выберите 1 или 2.");
             }
 
-            if (choice == 1) 
+            if (choice == 1)
             {
                 var sortAlgorithm = new QuickSortAlgorithm();
                 var sortResult = result.ToCharArray();
                 sortAlgorithm.Sort(sortResult);
                 Console.WriteLine(new string(sortResult));
             }
-            else if (choice == 2) 
+            else if (choice == 2)
             {
                 var sortAlgorithm = new TreeSortAlgorithm();
                 var sortResult = result.ToCharArray();
@@ -81,7 +82,7 @@ class Program
         return random.Next(0, lenMax).ToString();
     }
 
-    static string FindLongestSubstring(string input)
+    static public string FindLongestSubstring(string input)
     {
         string vowels = "aeiouy";
         string longestSubstring = "";
@@ -109,26 +110,29 @@ class Program
         return longestSubstring;
     }
 
-    static void CountCharacters(string input)
+    static public List<string> CountCharacters(string input)
     {
+        List<string> characters = new();
         foreach (var baseCharacter in input.Distinct().ToArray())
         {
             var count = input.Count(character => character == baseCharacter);
             Console.WriteLine("Количество символов {0} в обработанной строке = {1}", baseCharacter, count);
+            characters.Add(("Количество символов " + baseCharacter.ToString() + " в обработанной строке = " + count.ToString()));
         }
+        return characters;
     }
 
-    class InvalidStringException : Exception 
+    class InvalidStringException : Exception
     {
-        public InvalidStringException(string characters): base(characters) { }
+        public InvalidStringException(string characters) : base(characters) { }
     }
 
-    static string GetInvalidCharacters(string input)
+    static public string GetInvalidCharacters(string input)
     {
         return new string(input.Where(c => !Regex.IsMatch(c.ToString(), "^[a-z]*$")).Distinct().ToArray());
     }
 
-    static string ProcessString(string input)
+    static public string ProcessString(string input)
     {
         if (input.Length % 2 == 0)
         {
@@ -163,7 +167,7 @@ interface ISortAlgorithm
     void Sort(char[] array);
 }
 
-class QuickSortAlgorithm : ISortAlgorithm
+public class QuickSortAlgorithm : ISortAlgorithm
 {
     public void Sort(char[] inputArray)
     {
@@ -219,7 +223,7 @@ public class TreeNode
     }
 }
 
-class TreeSortAlgorithm : ISortAlgorithm
+public class TreeSortAlgorithm : ISortAlgorithm
 {
     private TreeNode root;
 
