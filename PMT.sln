@@ -3,7 +3,9 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 17
 VisualStudioVersion = 17.6.33723.286
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PMT", "PMT\PMT.csproj", "{FDCC34AF-DB96-4736-897E-A70E07C0CD94}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "PMT", "PMT\PMT.csproj", "{FDCC34AF-DB96-4736-897E-A70E07C0CD94}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PMT_Test", "PMT_Test\PMT_Test.csproj", "{400236A1-2988-4404-A24E-D1C080E777CA}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -15,6 +17,10 @@ Global
 		{FDCC34AF-DB96-4736-897E-A70E07C0CD94}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{FDCC34AF-DB96-4736-897E-A70E07C0CD94}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{FDCC34AF-DB96-4736-897E-A70E07C0CD94}.Release|Any CPU.Build.0 = Release|Any CPU
+		{400236A1-2988-4404-A24E-D1C080E777CA}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{400236A1-2988-4404-A24E-D1C080E777CA}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{400236A1-2988-4404-A24E-D1C080E777CA}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{400236A1-2988-4404-A24E-D1C080E777CA}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
